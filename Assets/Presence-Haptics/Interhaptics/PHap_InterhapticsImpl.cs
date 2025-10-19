@@ -19,7 +19,7 @@ using UnityEngine;
 using Interhaptics.Core;
 using Interhaptics.HapticBodyMapping; // Added for BodyPartE
 using Interhaptics;
-using Interhaptics.Platforms.Sensa;
+//using Interhaptics.Platforms.Sensa;
 #endif
 
 namespace Presence
@@ -120,11 +120,13 @@ namespace Presence
                 return true;
             // For Freyja, we might need a more specific check if available from Interhaptics or RazerSensaProvider
 #if IH_PACKAGE_PRESENT
+#if (UNITY_EDITOR_WIN || UNITY_STANDALON_WIN)
             var provider = new Interhaptics.Platforms.Sensa.RazerSensaProvider();
             if (provider.IsPresent()) { 
                 //Debug.Log("Interhaptics Device is present.");
                 return true;
             }
+#endif
 #endif
             return false;
         }

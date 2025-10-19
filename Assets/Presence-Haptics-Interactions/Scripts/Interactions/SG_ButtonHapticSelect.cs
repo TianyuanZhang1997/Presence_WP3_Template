@@ -1,7 +1,9 @@
 using SG;
 using SG.Util;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.VFX;
 
 namespace Presence
 {
@@ -36,7 +38,7 @@ namespace Presence
     {
         [Header("Top part of the button that pushes in")]
         public GameObject button;
-
+        public VisualEffect vfx;
         [Header("Distance to activate button")]
         public float maxButtonMovement = 0.003F;
 
@@ -141,7 +143,11 @@ namespace Presence
         private void ButtonActivated()
         {
             gameObject.GetComponent<AudioSource>().Play();
-
+            if (vfx != null && vfx.enabled==false)
+            {
+                vfx.enabled = true;
+                Invoke("disableVFX", 10f);
+            }
             SendHapticCommand();
             buttonPressed.Invoke(isOn);
 
@@ -153,7 +159,11 @@ namespace Presence
             switched = true;
 
         }
-
+        private void disableVFX() 
+        { 
+            vfx.enabled = false;
+        }
+        
         // create a haptic effect on the glove when you pressed the button deep enough to trigger the event
         private void SendHapticCommand()
         {
@@ -250,5 +260,6 @@ namespace Presence
             // Return button to startPosition
             button.transform.localPosition = Vector3.Lerp(button.transform.localPosition, localStartPos, Time.deltaTime * buttonReturnSpeed);
         }
+        
     }
 }

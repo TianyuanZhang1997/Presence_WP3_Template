@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Presence-Haptics-Interactions/Scenes/SG_Presence_Interactions.unity
     guid: 4d38f291f5b7675439744bfa6d3052f8
+  - enabled: 1
+    path: Assets/Presence-Haptics-Interactions/Scenes/PlayerScene.unity
+    guid: 85fa31260b7499548b425faa8ca5fc5a
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 90a167b1852a17d4dbf97b1e4cfb3a5f, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: e43e85dc0287f6744b480ee6f6a83abb, type: 2}
